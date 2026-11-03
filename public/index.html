@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جيرة | Jeerah</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="#home">
+      <img src="logo.svg" alt="شعار جيرة">
+      <div><strong>Jeerah</strong><span>جيرة</span></div>
+    </a>
+    <nav>
+      <a class="active" href="#home">الرئيسية</a>
+      <a href="#services">الخدمات</a>
+      <a href="#events">الفعاليات</a>
+      <a href="#posts">المنشورات</a>
+      <a href="#about">عن جيرة</a>
+    </nav>
+    <button class="login-btn" id="accountButton" onclick="openLogin()">تسجيل الدخول</button>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">منصة تجمع أهل الحي في مكان واحد</span>
+        <h1>أهلاً بك في <b>جيرة</b></h1>
+        <p>حيّنا أجمل بتعاوننا</p>
+        <div class="search">
+          <input id="searchInput" type="text" placeholder="ابحث عن خدمات، أدوات، أو فعاليات...">
+          <button onclick="searchPosts()">⌕</button>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="house house-one"></div>
+        <div class="house house-two"></div>
+        <div class="tree tree-one"></div>
+        <div class="tree tree-two"></div>
+      </div>
+    </section>
+
+    <section class="features" id="services">
+      <div class="section-heading">
+        <span>ماذا تقدم جيرة؟</span>
+        <h2>كل احتياجات الحي في مكان واحد</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="icon green">♧</div><h3>التواصل والتعاون</h3><p>تواصل بسهولة مع جيرانك وتبادل الخدمات والأدوات اليومية.</p></article>
+        <article class="feature-card"><div class="icon orange">▣</div><h3>الأنشطة المحلية</h3><p>اكتشف وشارك في الفعاليات والأنشطة المنظمة داخل الحي.</p></article>
+        <article class="feature-card"><div class="icon purple">◈</div><h3>التنبيهات والإشعارات</h3><p>ابقَ على اطلاع بأهم الأحداث والتنبيهات التي تخص الحي.</p></article>
+        <article class="feature-card"><div class="icon blue">⚒</div><h3>تبادل الأدوات والموارد</h3><p>استعر أو أعِر أدواتك ومعداتك بين الجيران، مما يقلل التكاليف.</p></article>
+      </div>
+    </section>
+
+    <section class="two-col" id="posts">
+      <div>
+        <div class="section-heading row">
+          <div><span>مجتمعنا</span><h2>أحدث المنشورات</h2></div>
+          <button class="outline" onclick="openPost()">+ إضافة منشور</button>
+        </div>
+        <div id="postsGrid" class="posts-grid"></div>
+      </div>
+
+      <aside class="side-card">
+        <h3>الأقسام</h3>
+        <button onclick="filterCategory('الكل')">◉ الكل</button>
+        <button onclick="filterCategory('خدمات')">♧ الخدمات</button>
+        <button onclick="filterCategory('أدوات')">⚒ الأدوات</button>
+        <button onclick="filterCategory('فعاليات')">▣ الفعاليات</button>
+        <button onclick="filterCategory('إعلانات')">♢ الإعلانات</button>
+        <hr>
+        <h3>أحدث الفعاليات</h3>
+        <div id="eventsList"></div>
+      </aside>
+    </section>
+
+    <section class="about" id="about">
+      <div>
+        <span class="eyebrow">فكرة المشروع</span>
+        <h2>ما هي جيرة؟</h2>
+        <p>جيرة منصة رقمية مخصصة لسكان الحي، تجمعهم في مكان واحد لتسهيل التواصل والتعاون وتبادل الخدمات والأدوات والمشاركة في الأنشطة المحلية.</p>
+      </div>
+      <div class="about-cards">
+        <div><b>المشكلة</b><p>تشتت التواصل وغياب منصة موحدة تجمع احتياجات الحي.</p></div>
+        <div><b>الهدف</b><p>بناء مجتمع حي متماسك يتعاون ويتشارك في بيئة رقمية واحدة.</p></div>
+        <div><b>الفئة المستهدفة</b><p>سكان الأحياء السكنية، العائلات والأفراد، وإدارات الأحياء والجمعيات.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="logo.svg" alt="جيرة">
+    <span>معًا نبني حيًا أفضل</span>
+  </footer>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <button class="close" onclick="closeModal()">×</button>
+      <h2 id="modalTitle">إضافة منشور</h2>
+      <form id="postForm">
+        <input id="title" placeholder="عنوان المنشور" required>
+        <textarea id="description" placeholder="اكتب التفاصيل..." required></textarea>
+        <select id="category"><option>خدمات</option><option>أدوات</option><option>فعاليات</option><option>إعلانات</option></select>
+        <button class="primary" type="submit">نشر</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="loginModal" class="modal hidden">
+    <div class="modal-box login-box">
+      <button class="close" onclick="closeModal()">×</button>
+      <img src="logo.svg" alt="جيرة">
+      <h2 id="authTitle">تسجيل الدخول</h2>
+      <form id="authForm">
+        <input id="authName" placeholder="الاسم" autocomplete="name" class="hidden">
+        <input id="authEmail" type="email" placeholder="البريد الإلكتروني" autocomplete="email" required>
+        <input id="authPassword" type="password" placeholder="كلمة المرور (8 أحرف على الأقل)" autocomplete="current-password" required minlength="8">
+        <button class="primary" id="authSubmit" type="submit">دخول</button>
+      </form>
+      <button class="auth-switch" id="authSwitch" type="button" onclick="toggleAuthMode()">إنشاء حساب جديد</button>
+      <p id="authMessage" class="auth-message" role="status"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
